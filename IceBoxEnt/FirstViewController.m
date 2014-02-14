@@ -65,8 +65,6 @@
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!error) {
             eventDateString = [object objectForKey:@"eventDateTime"];
-            //testing below
-            eventDateString = @"2014-02-13 22:50:00 EST";
             eventName = [object objectForKey:@"eventName"];
             NSLog(@"eventname: %@", eventName);
             [eventNameLabel setText:eventName];
