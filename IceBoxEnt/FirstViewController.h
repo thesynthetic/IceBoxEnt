@@ -27,4 +27,9 @@
 
 @property (nonatomic) BOOL partyTime;
 
+@property (nonatomic, retain) NSUserDefaults *userDefaults;
+
+-(void)updateCountdown;
+-(void)initiateTimer;
+
 @end

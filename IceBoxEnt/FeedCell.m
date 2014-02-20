@@ -11,6 +11,10 @@
 @implementation FeedCell
 
 @synthesize imageView;
+@synthesize profileImageView;
+@synthesize name;
+@synthesize moreActionSheet;
+@synthesize photoID;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,5 +31,37 @@
 
     // Configure the view for the selected state
 }
+
+-(IBAction)moreClicked:(id)sender
+{
+    
+    moreActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Report Inappropriate" otherButtonTitles:nil, nil];
+    
+    [moreActionSheet showInView:self];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+        switch (buttonIndex)
+        {
+            case 0:
+            {
+                PFQuery *query = [PFQuery queryWithClassName:@"CrowdPicture"];
+                [query getObjectInBackgroundWithId:photoID block:^(PFObject *object, NSError *error) {
+                    // Do something with the returned PFObject in the gameScore variable.
+                    object[@"active"] = @NO;
+                    [object saveInBackground];
+                }];
+
+                break;
+            }
+            case 1:
+                break;
+                
+        
+        }
+}
+
 
 @end

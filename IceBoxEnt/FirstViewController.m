@@ -33,7 +33,7 @@
 @synthesize box4;
 @synthesize box5;
 @synthesize partyTime;
-
+@synthesize userDefaults;
 
 - (void)viewDidLoad
 {
@@ -41,13 +41,8 @@
   
     [self setNeedsStatusBarAppearanceUpdate];
     
-//    CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-//    pulseAnimation.duration = .5;
-//    pulseAnimation.toValue = [NSNumber numberWithFloat:1.1];
-//    pulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    pulseAnimation.autoreverses = YES;
-//    pulseAnimation.repeatCount = FLT_MAX;
-//    [box1.layer addAnimation:pulseAnimation forKey:nil];
+    userDefaults = [NSUserDefaults standardUserDefaults];
+    
     partyTime = NO;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -70,6 +65,11 @@
             [eventNameLabel setText:eventName];
             
             eventDate = [dateFormatter dateFromString:eventDateString];
+            
+            userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:self.eventName forKey:@"eventName"];
+            [userDefaults setObject:self.eventDate forKey:@"eventDate"];
+            [userDefaults synchronize];
             
             //Get string with +0000
             
@@ -111,6 +111,8 @@
 
 -(void)initiateTimer
 {
+    
+    
     [UIView animateWithDuration:1.0
                           delay:0.0
                         options:UIViewAnimationCurveEaseInOut
@@ -136,7 +138,7 @@
     
 }
 
--(void) updateCountdown
+-(void)updateCountdown
 {
     second.alpha = 1;
  
@@ -160,6 +162,8 @@
         minute.text=@"00";
         second.text=@"00";
         partyTime = YES;
+        [userDefaults setObject:@"YES" forKey:@"partyTime"];
+        [userDefaults synchronize];
     }
     else {
         partyTime = NO;
@@ -167,6 +171,8 @@
         hour.text=[NSString stringWithFormat:@"%02d",hours];
         minute.text=[NSString stringWithFormat:@"%02d",minutes];
         second.text=[NSString stringWithFormat:@"%02d",seconds];
+        [userDefaults setObject:@"NO" forKey:@"partyTime"];
+        [userDefaults synchronize];
     }
 }
 
@@ -175,14 +181,6 @@
     return NO;
 }
 
--(IBAction)liveButton
-{
-    FeedContainerViewController *vc = [[FeedContainerViewController alloc] init];
-    UINavigationController *navController = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"LiveNavigationController"];
-    
-    
-    [self presentViewController:navController animated:YES completion:nil];
-}
 
 
 

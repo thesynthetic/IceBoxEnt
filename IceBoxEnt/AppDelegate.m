@@ -10,16 +10,20 @@
 #import <Parse/Parse.h>
 #import "GAI.h"
 
+
 @implementation AppDelegate
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    
-    
     [Parse setApplicationId:@"vge1ucVw2oVPmvJx8bBoIxd9wK3LSpomOqpniKe4"
                   clientKey:@"qLqNTdT2wGaQb55OArqlkZo2KgTwsA2xs0tda9OO"];
     
+    
+    
+    [FBLoginView class];
+
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     // Optional: automatically send uncaught exceptions to Google Analytics.
@@ -63,6 +67,19 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    // Call FBAppCall's handleOpenURL:sourceApplication to handle Facebook app responses
+    BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    
+    // You can add your app-specific url handling code here if needed
+    
+    return wasHandled;
 }
 
 @end

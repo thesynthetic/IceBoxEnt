@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
-@interface FeedCell : UITableViewCell
+@interface FeedCell : UITableViewCell <UIActionSheetDelegate>
 
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
+@property (nonatomic, retain) IBOutlet UIImageView *profileImageView;
+@property (nonatomic, retain) IBOutlet UILabel *name;
+@property (nonatomic, retain) NSString *photoID;
+@property (nonatomic, retain) UIActionSheet *moreActionSheet;
 
 @end
