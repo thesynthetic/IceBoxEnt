@@ -15,6 +15,7 @@
 @synthesize name;
 @synthesize moreActionSheet;
 @synthesize photoID;
+@synthesize elapsedTime;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

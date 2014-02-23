@@ -61,6 +61,7 @@
 		70AC14CE18AE4A3100FA9757 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AC14CD18AE4A3100FA9757 /* libGoogleAnalyticsServices.a */; };
 		70AC14D218B2E52A00FA9757 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AC14D118B2E52A00FA9757 /* FacebookSDK.framework */; };
 		70AC14D618B4E63F00FA9757 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AC14D518B4E63F00FA9757 /* LoginViewController.m */; };
+		70AC14D918B64F3B00FA9757 /* PickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AC14D818B64F3B00FA9757 /* PickerController.m */; };
 		70C243CF18A6A08D007945D1 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C243CE18A6A08D007945D1 /* FeedViewController.m */; };
 		70C243D218A6A0FD007945D1 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C243D118A6A0FD007945D1 /* FeedCell.m */; };
 		70C243D518A6C297007945D1 /* FeedContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C243D418A6C297007945D1 /* FeedContainerViewController.m */; };
@@ -171,6 +172,8 @@
 		70AC14D118B2E52A00FA9757 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		70AC14D418B4E63F00FA9757 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		70AC14D518B4E63F00FA9757 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		70AC14D718B64F3B00FA9757 /* PickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerController.h; sourceTree = "<group>"; };
+		70AC14D818B64F3B00FA9757 /* PickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerController.m; sourceTree = "<group>"; };
 		70C243CD18A6A08D007945D1 /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		70C243CE18A6A08D007945D1 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		70C243D018A6A0FD007945D1 /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
@@ -403,6 +406,8 @@
 				70C243D118A6A0FD007945D1 /* FeedCell.m */,
 				70AC14D418B4E63F00FA9757 /* LoginViewController.h */,
 				70AC14D518B4E63F00FA9757 /* LoginViewController.m */,
+				70AC14D718B64F3B00FA9757 /* PickerController.h */,
+				70AC14D818B64F3B00FA9757 /* PickerController.m */,
 			);
 			name = NewsFeed;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				700CE26217FF9EC20000C072 /* AppDelegate.m in Sources */,
 				700CE26B17FF9EC20000C072 /* FirstViewController.m in Sources */,
 				702E9EE118730C2900B91EFF /* EventTableCell.m in Sources */,
+				70AC14D918B64F3B00FA9757 /* PickerController.m in Sources */,
 				700CE25E17FF9EC20000C072 /* main.m in Sources */,
 				700CE29518017DA50000C072 /* GalleryTableCell.m in Sources */,
 			);
@@ -638,7 +644,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PROVISIONING_PROFILE = "2AA50C42-4981-4F0D-A9AC-3BE143C8AD4F";
+				PROVISIONING_PROFILE = "E5C53B93-6DE4-43C9-AC73-72239BDEF78F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -676,7 +682,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PROVISIONING_PROFILE = "2AA50C42-4981-4F0D-A9AC-3BE143C8AD4F";
+				PROVISIONING_PROFILE = "E5C53B93-6DE4-43C9-AC73-72239BDEF78F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -711,7 +717,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2AA50C42-4981-4F0D-A9AC-3BE143C8AD4F";
+				PROVISIONING_PROFILE = "E5C53B93-6DE4-43C9-AC73-72239BDEF78F";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -745,7 +751,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2AA50C42-4981-4F0D-A9AC-3BE143C8AD4F";
+				PROVISIONING_PROFILE = "E5C53B93-6DE4-43C9-AC73-72239BDEF78F";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

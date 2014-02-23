@@ -16,5 +16,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *name;
 @property (nonatomic, retain) NSString *photoID;
 @property (nonatomic, retain) UIActionSheet *moreActionSheet;
+@property (nonatomic, retain) IBOutlet UILabel *elapsedTime;
 
 @end

@@ -9,6 +9,7 @@
 #import "FeedViewController.h"
 #import <Parse/Parse.h>
 #import "FeedCell.h"
+#import "PickerController.h"
 
 @interface FeedViewController ()
 
@@ -45,15 +46,13 @@
 //    UIViewController *waitView = (UIViewController*)[[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WaitScreen"];
 
     
-
-    
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     eventName = [defaults objectForKey:@"eventName"];
     
     
 
-        [self.navigationItem setTitle:[NSString stringWithFormat:@"LIVE @ %@",eventName]];
+        [self.navigationItem setTitle:[NSString stringWithFormat:@"Live @ %@",eventName]];
         
         imageArray = [[NSMutableArray alloc] init];
         
@@ -76,7 +75,7 @@
                            action:@selector(settingsClick) forControlEvents:UIControlEventTouchDown];
         [settingsButton setImage:[UIImage imageNamed:@"Settings"] forState:UIControlStateNormal];
         [settingsButton setAlpha:0.7];
-        settingsButton.frame = CGRectMake(4.0, -6.0, 50.0, 50.0);
+        settingsButton.frame = CGRectMake(6.0, -4.0, 45.0, 45.0);
         
         
         UIButton *cameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -84,7 +83,7 @@
                          action:@selector(startCamera) forControlEvents:UIControlEventTouchDown];
         [cameraButton setImage:[UIImage imageNamed:@"CameraIcon"] forState:UIControlStateNormal];
         [cameraButton setAlpha:0.7];
-        cameraButton.frame = CGRectMake(262.0, -6.0, 50.0, 50.0);
+        cameraButton.frame = CGRectMake(266.0, -4.0, 45.0, 45.0);
         
         [self.navigationController.navigationBar addSubview:settingsButton];
         [self.navigationController.navigationBar addSubview:cameraButton];
@@ -150,9 +149,54 @@
     
     NSString *first = [tempObject objectForKey:@"first_name"];
     NSString *last = [tempObject objectForKey:@"last_name"];
+    NSDate *createdAt = [tempObject createdAt];
+    
+    //Elapsed time calculation
+    
+    NSDate *now = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit;
+    NSDateComponents *dateComponents = [calendar components:unitFlags fromDate:now toDate:createdAt options:0];
+    
+    NSInteger hours    = [dateComponents hour];
+    NSInteger minutes  = [dateComponents minute];
+    NSInteger seconds  = [dateComponents second];
+    
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *componentsDaysDiff = [gregorianCalendar components:NSDayCalendarUnit
+                                                            fromDate:now toDate:createdAt options:0];
+
+    NSString *elapsedString;
+    
+    if (-componentsDaysDiff.day > 6){
+        elapsedString = [NSString stringWithFormat:@"%iw", (int)(-componentsDaysDiff.day / 7)];
+    }
+    else if (-componentsDaysDiff.day > 0)
+    {
+        elapsedString = [NSString stringWithFormat:@"%id",-componentsDaysDiff.day];
+    }
+    else if (-hours > 0)
+    {
+        elapsedString = [NSString stringWithFormat:@"%ih",-hours];
+    }
+    else if (-minutes > 0)
+    {
+        elapsedString = [NSString stringWithFormat:@"%im",-minutes];
+    }
+    else
+    {
+        elapsedString = [NSString stringWithFormat:@"%is",-seconds];
+    }
+    
+
+    cell.elapsedTime.text = elapsedString;
+    
+    
 
     cell.name.text = [NSString stringWithFormat:@"%@ %c", first, [last characterAtIndex:0]];
     cell.photoID = [tempObject objectId];
+    
+    
     
     return cell;
 }
@@ -220,6 +264,7 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+
     [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
     if(!img) img = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -276,12 +321,12 @@
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"username"]){
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        PickerController *imagePicker = [[PickerController alloc] init];
         imagePicker.delegate = self;
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         imagePicker.allowsEditing = YES;
         imagePicker.allowsEditing = YES;
-
+        
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
     else {
@@ -376,5 +421,9 @@
     return statusBar;
 }
 
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
 
 @end

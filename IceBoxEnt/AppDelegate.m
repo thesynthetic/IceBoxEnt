@@ -17,6 +17,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    UITabBarController *tab = (UITabBarController*)[[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"TabBarController"];
+    tab.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+    
+
+
+    
     [Parse setApplicationId:@"vge1ucVw2oVPmvJx8bBoIxd9wK3LSpomOqpniKe4"
                   clientKey:@"qLqNTdT2wGaQb55OArqlkZo2KgTwsA2xs0tda9OO"];
     

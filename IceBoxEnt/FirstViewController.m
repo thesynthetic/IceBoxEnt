@@ -162,11 +162,31 @@
         minute.text=@"00";
         second.text=@"00";
         partyTime = YES;
+        [eventNameLabel setTextColor:[UIColor colorWithRed:10.0/255.0 green:159.0/255.0 blue:250.0/255.0 alpha:1.0]];
+
+
+        if (eventNameLabel.tag == 1) {
+            [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationCurveEaseInOut animations:^{
+                [eventNameLabel setTransform:CGAffineTransformMakeScale(1/1.1, 1/1.1)];
+                [eventNameLabel setTag:2];
+            }
+                             completion:^(BOOL finished) {}];
+        }
+        else {
+            [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationCurveEaseInOut animations:^{
+                [eventNameLabel setTransform:CGAffineTransformMakeScale(1.1, 1.1)];
+                [eventNameLabel setTag:1];
+            }
+                             completion:^(BOOL finished) {}];
+            
+        }
+        
         [userDefaults setObject:@"YES" forKey:@"partyTime"];
         [userDefaults synchronize];
     }
     else {
         partyTime = NO;
+        [eventNameLabel setTextColor:[UIColor whiteColor]];
         day.text=[NSString stringWithFormat:@"%02d",componentsDaysDiff.day];
         hour.text=[NSString stringWithFormat:@"%02d",hours];
         minute.text=[NSString stringWithFormat:@"%02d",minutes];
